@@ -34,7 +34,7 @@
     xmp {
         font-family: NanumSquareR;
         text-align: left;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     #app {
