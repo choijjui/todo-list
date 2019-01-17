@@ -18,10 +18,9 @@
     html, body {
         width: 100%;
         height: 100%;
-        margin: 0;
-        padding: 0;
     }
 
+    html,
     body,
     div,
     ul,
@@ -32,6 +31,8 @@
     option,
     label,
     xmp {
+        margin: 0;
+        padding: 0;
         font-family: NanumSquareR;
         text-align: left;
         font-size: 14px;
@@ -41,5 +42,28 @@
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         text-align: center;
         color: #2c3e50;
+        height: 100%;
     }
+    
+    button {
+        cursor: pointer;
+    }
+
+    button:focus,
+    input:focus {
+        outline: none;
+    }
+
+    input {
+        transition: border .55s ease;
+        border-radius: 5px;
+        border: 1px solid #cdcdcd;
+        padding: 5px 20px;
+    }
+
+    input:focus {
+        border: 1px solid #697084;
+    }
+
+
 </style>

@@ -2,17 +2,20 @@
     <div class="main-container">
         <!-- 사이드 메뉴 -->
         <side-menu></side-menu>
-        <router-link to="/board/write">글쓰기</router-link>
+        <todo-main></todo-main>
+        <!--<router-link to="/board/write"></router-link>-->
     </div>
 </template>
 
 <script lang="ts">
     import { Vue, Component } from "vue-property-decorator";
     import SideMenu from "./common/SideMenu";
+    import TodoMainContainer from "./common/todo/TodoMainContainer.vue";
 
     @Component({
         components: {
-            'side-menu': SideMenu
+            'side-menu': SideMenu,
+            'todo-main': TodoMainContainer
         }
     })
     export default class MainComponent extends Vue {
@@ -21,11 +24,7 @@
 
 <style scoped>
     .main-container {
-
+        height: 100%;
+        display: flex;
     }
-
-    .main-container > .side-menu {
-        float: left;
-    }
-
 </style>
