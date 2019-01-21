@@ -4,17 +4,22 @@
             <input type="text" class="add-input" placeholder="Add TODO...">
             <button class="add-button"><i class="fa fa-plus"></i></button>
         </div>
-
         <div class="todo-area">
-
+            <todo-item></todo-item>
+            <todo-item></todo-item>
         </div>
     </div>
 </template>
 
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
+    import TodoItemComponent from "./TodoItemComponent.vue";
 
-    @Component
+    @Component({
+        components: {
+            'todo-item': TodoItemComponent
+        }
+    })
     export default class TodoMainContainer extends Vue {
 
     }
@@ -30,6 +35,7 @@
 
     .container > .add-area {
         display: flex;
+        padding-bottom: 10px;
     }
 
     .container > .add-area > .add-input {
