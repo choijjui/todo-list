@@ -1,12 +1,16 @@
 <template>
     <div class="container">
         <div class="add-area">
-            <input type="text" class="add-input" placeholder="Add TODO...">
-            <button class="add-button"><i class="fa fa-plus"></i></button>
+            <input type="text" class="add-input" placeholder="Add TODO..."
+                   v-model="value" @keydown.enter="addTodoItem">
+            <button class="add-button" @click="addTodoItem"><i class="fa fa-plus"></i></button>
         </div>
         <div class="todo-area">
-            <todo-item></todo-item>
-            <todo-item></todo-item>
+            <todo-item v-for="item in todoList"
+                       :data="item"
+                       :key="item.getId()"
+                       @click.native="activeTodo(item)">
+            </todo-item>
         </div>
     </div>
 </template>
@@ -14,6 +18,8 @@
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
     import TodoItemComponent from "./TodoItemComponent.vue";
+    import TodoVO from "../../../vo/TodoVO";
+    import util from "../../common/util/Utils"
 
     @Component({
         components: {
@@ -21,7 +27,23 @@
         }
     })
     export default class TodoMainContainer extends Vue {
+        todoList: Array<TodoVO> = [];
+        value: string = "";
 
+        addTodoItem() {
+            if (this.value.length > 0) {
+                let todoItem = new TodoVO();
+                todoItem.setId(util.uuid());
+                todoItem.setTitle(this.value);
+
+                this.todoList.push(todoItem);
+                this.value = "";
+            }
+        }
+
+        activeTodo(item) {
+            this.$emit("selectItem", item);
+        }
     }
 </script>
 

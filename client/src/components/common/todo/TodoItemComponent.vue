@@ -1,31 +1,27 @@
 <template>
     <div class="item">
-        <input type="checkbox">
-        <div class="label">{{dataVO.getTitle()}}</div>
+        <label>
+            <input type="checkbox">
+            <div class="label">{{data.getTitle()}}</div>
+        </label>
         <div class="button-map">
             <i class="fas fa-thumbtack"></i>
             <i class="fas fa-comments"></i>
             <i class="fas fa-redo-alt"></i>
         </div>
-        <div class="due-date">{{dataVO.getDate()}}</div>
+        <div class="due-date">{{data.getDate()}}</div>
         <div class="favorite"><i class="far fa-star"></i></div>
     </div>
 </template>
 
 <script lang="ts">
-    import {Vue, Component} from "vue-property-decorator";
+    import {Vue, Component, Prop} from "vue-property-decorator";
     import TodoVO from "../../../vo/TodoVO"
 
     @Component
     export default class TodoItemComponent extends Vue {
-        dataVO: TodoVO;
-
-        created() {
-            this.dataVO = new TodoVO();
-            this.dataVO.setId("1");
-            this.dataVO.setTitle("TEST TODO");
-            this.dataVO.setDate('2019-02-10')
-        }
+        @Prop()
+        data: TodoVO;
     }
 
 </script>
@@ -40,9 +36,18 @@
         margin-bottom: 3px;
     }
 
-    .item > .label {
-        flex: 1;
+    .item:hover {
+        background-color: #E9ECF4;
+    }
+
+    .item > label > .label {
         padding: 0 5px;
+    }
+
+    .item > label {
+        display: flex;
+        align-items: center;
+        flex: 1;
     }
 
     .item > .button-map {
